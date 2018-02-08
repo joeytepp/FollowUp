@@ -7,7 +7,7 @@ var geo = geocoder({
   key: 'AIzaSyD0JAwC4x5AgtWSD6z3FKlg3ppbzSm9Asw'
 }); // Setting up the geocoder
 
-var placeNames = ["Toronto", "Birmingham", "London", "Geneva", "Melbourne"]
+var placeNames = ["Toronto", "Birmingham", "London", "Geneva", "Melbourne", "Kingston", "Queen's University"]
 var places = []
 
 for(var i in placeNames){

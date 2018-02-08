@@ -1,2 +1,64 @@
+<!-- Stylesheets -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+<!-- Main Body -->
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<body>
+  <p>Welcome to {{title}}</p>
+  <div class="input-group">
+    <input type="text" id="search-box" class=form-control placeholder="Search"/>
+    <button type="button" class="btn btn-default" id="search-btn" onclick="search()">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </button>
+  </div>
+  <pre></pre>
+  <pre></pre>
+  {{# each places}}
+  <div class="alert alert-success">
+    <ul>
+      <button type="button" class="btn btn-default" onclick="buttonClicked()">
+        <i class="fa fa-car"></i></button> <b>{{this.name}}</b> - ({{this.lat}}, {{this.lng}})
+    </ul>
+  </div>
+  {{/each}}
+</body>
+
+{{!-- Javascript --}}
+<script src="../javascripts/test.js"></script>
+<script>
+  var url = document.URL;
+
+  var search = function(){
+    //alert("Searching...")
+    var text = document.getElementById('search-box').value
+    var xhr = new XMLHttpRequest()
+
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState = 4 && xhr.status == 200){
+        if(xhr.responseText)
+          console.log('Response Text:'+ xhr.responseText)
+      }
+    }
+
+    xhr.open('POST', url+'click', true)
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+      'test': text
+    }))
+
+  }
+  var buttonClicked = function(){
+    console.log('Button Pressed')
+    var xh = new XMLHttpRequest()
+    console.log(xh)
+    xh.open('GET', url+'users', true)
+    //xh.send(null)
+    return xh.responseText;
+  }
+
+  var doRequest = function(){
+
+  }
+</script>
